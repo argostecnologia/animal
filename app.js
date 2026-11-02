@@ -47,8 +47,8 @@ let cadastroDisponivel = false,
 let resultadoAtual = null,
   // Indica se o formulário está corrigindo um resultado ou cadastrando um animal não reconhecido.
   corrigindoIdentificacao = false;
-// Estados dos dois combos: o foco continua no campo e aria-activedescendant aponta a opção ativa.
-// Guarda os elementos e o estado de cada campo com lista de sugestões: espécie e raça.
+// Estado do combo de raças: o foco continua no campo e aria-activedescendant aponta a opção ativa.
+// Guarda os elementos e o estado do campo com sugestões de raça.
 const combos = new Map();
 // Ignora diferenças de caixa e acentuação somente na pesquisa; preserva o nome apresentado.
 // Recebe um texto e devolve uma versão sem acentos, espaços nas pontas e letras maiúsculas.
@@ -111,8 +111,7 @@ function popularLista(id, valores, busca = '') {
     // Elemento usado para mostrar a mensagem de lista sem opções.
     const vazio = document.createElement('li');
     vazio.className = 'combo-vazio';
-    vazio.textContent =
-      id === 'lista-especies' ? 'Nenhuma espécie encontrada.' : 'Selecione primeiro a espécie.';
+    vazio.textContent = 'Selecione primeiro a espécie.';
     vazio.setAttribute('role', 'presentation');
     $(id).append(vazio);
   }
@@ -140,7 +139,7 @@ function posicionarLista(estado) {
 }
 // Fecha todas as listas de sugestões, preservando apenas o estado recebido em excecao, se houver.
 function fecharCombos(excecao = null) {
-  // Percorre os estados dos campos de espécie e raça; estado representa o campo da vez.
+  // Percorre os estados registrados; atualmente, apenas o campo de raça possui uma lista própria.
   for (const estado of combos.values()) {
     if (estado === excecao) continue;
     estado.lista.hidden = true;
@@ -258,7 +257,6 @@ function botoes() {
   // Raça permanece editável no cadastro/correção, mesmo antes de escolher uma espécie.
   // Só bloqueia durante uma operação em andamento para preservar os dados enviados.
   $('raca').disabled = ocupado;
-  $('abrir-especies').disabled = $('especie').disabled;
   $('abrir-racas').disabled = $('raca').disabled;
 }
 // A trava sempre é liberada em finally, inclusive em falha de câmera, rede ou banco.
@@ -342,7 +340,7 @@ function limpar() {
   // Guarda a espécie anterior para decidir quando limpar o campo de raça.
   ultimaEspecie = '';
   $('especie').setCustomValidity('');
-  popularLista('lista-especies', ESPECIES);
+
   popularRacas();
   status();
 }
@@ -553,7 +551,7 @@ async function identificar() {
   $('cadastro-form').reset();
   // Guarda a espécie anterior para decidir quando limpar o campo de raça.
   ultimaEspecie = '';
-  popularLista('lista-especies', ESPECIES);
+
   popularRacas();
   status(cadastroDisponivel ? '' : 'O cadastro está indisponível. Confira a conexão do servidor.');
 }
@@ -650,7 +648,7 @@ $('corrigir-identificacao').onclick = () => {
   $('especie').value = especie;
   ultimaEspecie = especie;
   $('raca').value = resultadoAtual.raca || 'Não identificada';
-  popularLista('lista-especies', ESPECIES);
+
   popularRacas();
   status();
   botoes();
@@ -663,8 +661,9 @@ $('outra-foto').onclick = $('cancelar-cadastro').onclick = () => {
   }
 };
 // Ao trocar uma espécie já definida, descarta a raça anterior; na primeira escolha preserva o texto digitado.
-// Executa a cada alteração no campo de espécie para atualizar as raças, a validação e os controles.
-$('especie').oninput = () => {
+// A seleção de uma das oito espécies atualiza as raças, a validação e os controles.
+$('especie').onchange = () => {
+  fecharCombos();
   // Espécie canônica correspondente ao texto do campo, ou null caso o texto ainda não seja válido.
   const especie = especieValida($('especie').value);
   $('especie').setCustomValidity('');
@@ -672,7 +671,7 @@ $('especie').oninput = () => {
     if (ultimaEspecie) $('raca').value = '';
     ultimaEspecie = especie || '';
   }
-  popularLista('lista-especies', ESPECIES, $('especie').value);
+
   popularRacas();
   botoes();
 };
@@ -751,7 +750,7 @@ async function iniciar() {
         /* A consulta será tentada novamente ao identificar. */
       }
     }
-    popularLista('lista-especies', ESPECIES);
+
     popularRacas();
     $('carregamento-etapa').textContent = 'Carregando o modelo de identificação…';
     // Espera o TensorFlow.js ficar pronto antes de carregar o MobileNet.
@@ -771,7 +770,6 @@ async function iniciar() {
   }
 }
 // A lista de raça acompanha a espécie; o campo continua aceitando um nome ainda não cadastrado.
-configurarCombo('especie', 'lista-especies', 'abrir-especies', () => ESPECIES);
 configurarCombo(
   'raca',
   'lista-racas',

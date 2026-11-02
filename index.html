@@ -4,10 +4,10 @@
 <!-- Dependências carregadas em ordem: TensorFlow.js, MobileNet e lógica da aplicação. -->
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Animal — Identificar espécie e raça</title>
-<link rel="stylesheet" href="./style.css?v=correcao13">
+<link rel="stylesheet" href="./style.css?v=especies-fixas14">
 <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
-<script defer src="./app.js?v=correcao13"></script>
+<script defer src="./app.js?v=especies-fixas14"></script>
 </head>
 <body><main>
 <!-- Esta parte fica disponível antes de qualquer card: só a escolha da foto e a câmera. -->
@@ -38,12 +38,20 @@
 <section id="cadastro" class="card" hidden aria-labelledby="cadastro-titulo">
 <h2 id="cadastro-titulo">Cadastrar animal</h2><p id="cadastro-orientacao">Animal não reconhecido. Informe os dados para cadastrar.</p>
 <form id="cadastro-form">
-<!-- Listas próprias garantem opções visíveis no computador e celular; digitação continua disponível. -->
+<!-- Espécie é uma lista fechada: somente as oito opções existentes podem ser selecionadas. -->
 <label for="especie">Espécie</label>
-<div class="combo">
-  <div class="combo-campo"><input id="especie" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-controls="lista-especies" autocomplete="off" placeholder="Digite para pesquisar" maxlength="100" required><button id="abrir-especies" class="combo-seta" type="button" aria-label="Abrir lista de espécies" aria-controls="lista-especies" tabindex="-1">⌄</button></div>
-  <ul id="lista-especies" class="combo-lista" role="listbox" aria-label="Espécies" hidden></ul>
-</div>
+<select id="especie" required disabled>
+  <option value="">Selecione uma espécie</option>
+  <option value="Cachorro">Cachorro</option>
+  <option value="Gato">Gato</option>
+  <option value="Cavalo">Cavalo</option>
+  <option value="Bovino">Bovino</option>
+  <option value="Ovelha">Ovelha</option>
+  <option value="Galinha">Galinha</option>
+  <option value="Pato">Pato</option>
+  <option value="Ganso">Ganso</option>
+</select>
+<!-- Raça continua permitindo pesquisar opções existentes ou informar uma nova raça. -->
 <label for="raca">Raça</label>
 <div class="combo">
   <div class="combo-campo"><input id="raca" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-controls="lista-racas" autocomplete="off" placeholder="Digite para pesquisar ou adicionar" maxlength="100"><button id="abrir-racas" class="combo-seta" type="button" aria-label="Abrir lista de raças" aria-controls="lista-racas" tabindex="-1">⌄</button></div>

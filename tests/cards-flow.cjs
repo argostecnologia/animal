@@ -26,7 +26,7 @@ module.exports = async ({browser,base,run,pgBin,pgPort,temp}) => {
   await nenhumCard();
   assert.equal(await page.locator('h1').innerText(),'Identificar animal');
   assert.equal(await page.locator('#animal,#amostras,#login-form,dialog').count(),0);
-  assert.equal(await page.locator('#lista-especies [role=option]').count(),8);
+  assert.equal(await page.locator('#especie option[value]:not([value=""])').count(),8);
   await page.screenshot({path:path.join(temp,'inicial.png'),fullPage:true});
   // A câmera apenas fornece a foto: o usuário ainda deve clicar em Identificar.
   const viewportOriginal = page.viewportSize();
@@ -76,26 +76,20 @@ module.exports = async ({browser,base,run,pgBin,pgPort,temp}) => {
   await page.locator('#cancelar-cadastro').click(); await nenhumCard();
   await selecionar(); await identificar();
   assert.equal(await page.locator('#cadastro').isVisible(),true);
-  // Ao abrir o campo, a lista aparece de verdade; seleção funciona com mouse e teclado.
+  // Espécie é uma seleção fechada; raça permanece editável e é preservada na primeira escolha.
   await page.locator('#raca').fill('Raça digitada antes');
-  await page.locator('#especie').click();
-  assert.equal(await page.locator('#lista-especies').isVisible(),true);
-  assert.equal(await page.locator('#especie').getAttribute('aria-expanded'),'true');
-  await page.getByRole('option',{name:'Gato',exact:true}).click();
+  await page.locator('#especie').selectOption('Gato');
   assert.equal(await page.locator('#especie').inputValue(),'Gato');
   assert.equal(await page.locator('#raca').inputValue(),'Raça digitada antes');
-  assert.equal(await page.locator('#lista-especies').isVisible(),false);
-  await page.locator('#especie').fill('bov');
-  assert.equal(await page.locator('#lista-especies [role=option]').count(),1);
-  assert.equal(await page.locator('#lista-especies [role=option]').innerText(),'Bovino');
-  await page.locator('#especie').press('ArrowDown'); await page.locator('#especie').press('Enter');
+  // Um nome fora da lista não pode ficar selecionado nem tornar o campo válido.
+  assert.equal(await page.locator('#especie').evaluate(campo => {
+    campo.value = 'Capivara';
+    return campo.checkValidity();
+  }),false);
+  await page.locator('#especie').selectOption('Bovino');
   assert.equal(await page.locator('#especie').inputValue(),'Bovino');
-  assert.equal(await page.locator('#lista-especies').isVisible(),false);
-  await page.locator('#abrir-especies').click();
-  assert.equal(await page.locator('#lista-especies [role=option]').count(),8);
-  await page.screenshot({path:path.join(temp,'lista-especies.png'),fullPage:true});
-  await page.locator('#especie').press('Escape');
-  assert.equal(await page.locator('#lista-especies').isVisible(),false);
+  assert.equal(await page.locator('#raca').inputValue(),'');
+  await page.screenshot({path:path.join(temp,'especies.png'),fullPage:true});
   // Há sugestão parecida, mas ela não pode impedir o nome novo nem substituir a digitação.
   await page.locator('#raca').fill('Sem raça');
   assert.equal(await page.locator('#lista-racas [role=option]').count(),2);
@@ -166,7 +160,7 @@ module.exports = async ({browser,base,run,pgBin,pgPort,temp}) => {
   assert.equal(await page.locator('#especie').inputValue(),'Bovino');
   assert.equal(await page.locator('#raca').inputValue(),'Nelore de teste');
   assert.equal(await page.locator('#raca').isEnabled(),true);
-  await page.locator('#especie').fill('Cavalo');
+  await page.locator('#especie').selectOption('Cavalo');
   await page.locator('#raca').fill('Mangalarga de teste');
   await page.locator('#raca').press('Enter');
   await page.locator('#salvar').click();

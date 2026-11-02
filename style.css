@@ -6,8 +6,8 @@ main{max-width:540px;margin:40px auto;padding:0 20px 40px}
 h1{font-size:28px;line-height:1.2;margin:0 0 26px}h2{font-size:21px;margin:0 0 16px}
 /* Controles largos para toque, com diferença visual entre ação principal e secundária. */
 label{display:block;font-weight:600;margin:14px 0 6px}
-input,button{width:100%;padding:12px;border-radius:8px;font:inherit}
-input{border:1px solid #a8bdb1;background:#fff;min-width:0}
+input,select,button{width:100%;padding:12px;border-radius:8px;font:inherit}
+input,select{border:1px solid #a8bdb1;background:#fff;min-width:0}
 button{border:0;background:#18764e;color:#fff;font-weight:600;cursor:pointer;margin-top:12px}
 button.secondary{background:#e0eae4;color:#244f3d}button:disabled{opacity:.45;cursor:default}
 /* Os cards são alternados pelo JavaScript, mantendo o mesmo contêiner visual. */
