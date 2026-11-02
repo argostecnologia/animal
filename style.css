@@ -1,64 +1,426 @@
+/*
+ * O style.css define a aparência e a organização visual da aplicação.
+ *
+ * Principais funcionalidades:
+ * - Define cores, fontes, espaçamentos e a largura do conteúdo.
+ * - Estiliza campos, seletores, botões e cards de identificação e cadastro.
+ * - Ajusta a prévia da foto, o vídeo da câmera e seus controles.
+ * - Organiza os resultados com ícones, rótulos e barra de pontuação.
+ * - Estiliza a lista de sugestões de raça e a opção de adicionar uma nova raça.
+ * - Controla a aparência das mensagens e dos elementos ocultos com hidden.
+ * - Define os indicadores e as animações de carregamento.
+ * - Adapta o layout a telas menores e respeita a preferência por movimento reduzido.
+ *
+ * É carregado pelo index.html e utilizado pelo navegador durante a execução do site.
+ */
+
 /* Medidas previsíveis: padding e borda são incluídos na largura dos componentes. */
-*{box-sizing:border-box}
+* {
+  box-sizing: border-box;
+}
 /* Base visual e coluna central; nenhuma regra exibe cards que possuam hidden. */
-body{margin:0;background:#f1f5f3;color:#193b30;font:16px/1.5 system-ui,sans-serif}
-main{max-width:540px;margin:40px auto;padding:0 20px 40px}
-h1{font-size:28px;line-height:1.2;margin:0 0 26px}h2{font-size:21px;margin:0 0 16px}
+body {
+  margin: 0;
+  background: #f1f5f3;
+  color: #193b30;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+main {
+  max-width: 540px;
+  margin: 40px auto;
+  padding: 0 20px 40px;
+}
+h1 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 26px;
+}
+h2 {
+  font-size: 21px;
+  margin: 0 0 16px;
+}
 /* Controles largos para toque, com diferença visual entre ação principal e secundária. */
-label{display:block;font-weight:600;margin:14px 0 6px}
-input,select,button{width:100%;padding:12px;border-radius:8px;font:inherit}
-input,select{border:1px solid #a8bdb1;background:#fff;min-width:0}
-button{border:0;background:#18764e;color:#fff;font-weight:600;cursor:pointer;margin-top:12px}
-button.secondary{background:#e0eae4;color:#244f3d}button:disabled{opacity:.45;cursor:default}
+label {
+  display: block;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+input,
+select,
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font: inherit;
+}
+input,
+select {
+  border: 1px solid #a8bdb1;
+  background: #fff;
+  min-width: 0;
+}
+button {
+  border: 0;
+  background: #18764e;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+button.secondary {
+  background: #e0eae4;
+  color: #244f3d;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
 /* Os cards são alternados pelo JavaScript, mantendo o mesmo contêiner visual. */
-.card{background:white;border:1px solid #d6e4dc;border-radius:12px;padding:22px;margin-top:20px}
+.card {
+  background: white;
+  border: 1px solid #d6e4dc;
+  border-radius: 12px;
+  padding: 22px;
+  margin-top: 20px;
+}
 /* Prévia pequena da foto selecionada; não é uma galeria de registros do banco. */
-#preview{max-width:240px;margin:20px auto 0}canvas{width:100%;height:auto;display:block;border-radius:10px}
+#preview {
+  max-width: 240px;
+  margin: 20px auto 0;
+}
+canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
 /* Reserva altura para os botões mesmo com a câmera em uma tela baixa/na horizontal.
    vh é o fallback; svh considera a área disponível com as barras do navegador móvel. */
-video{width:100%;max-height:min(420px,calc(100vh - 140px));max-height:min(420px,calc(100svh - 140px));min-height:64px;object-fit:contain;border-radius:10px;background:#172c24;margin-top:12px}
-#camera-area{scroll-margin-block:12px}
+video {
+  width: 100%;
+  max-height: min(420px, calc(100vh - 140px));
+  max-height: min(420px, calc(100svh - 140px));
+  min-height: 64px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #172c24;
+  margin-top: 12px;
+}
+#camera-area {
+  scroll-margin-block: 12px;
+}
 /* A rolagem automática usa esta linha como alvo para mostrar os dois controles. */
-#camera-controles{scroll-margin-bottom:12px}
-.row{display:flex;gap:10px}.row>*{flex:1}
+#camera-controles {
+  scroll-margin-bottom: 12px;
+}
+.row {
+  display: flex;
+  gap: 10px;
+}
+.row > * {
+  flex: 1;
+}
 /* Semântica do resultado e mensagens; o detalhamento visual vem nas regras abaixo. */
-output{display:block;background:#edf6f0;padding:15px;border-radius:8px;margin-top:16px;white-space:pre-line}
-output strong{display:block;font-size:22px}output p{margin:5px 0}output small{display:block;color:#53695e}
-#status{margin:16px 0;color:#486155;overflow-wrap:anywhere}
+output {
+  display: block;
+  background: #edf6f0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 16px;
+  white-space: pre-line;
+}
+output strong {
+  display: block;
+  font-size: 22px;
+}
+output p {
+  margin: 5px 0;
+}
+output small {
+  display: block;
+  color: #53695e;
+}
+#status {
+  margin: 16px 0;
+  color: #486155;
+  overflow-wrap: anywhere;
+}
 /* Importante: prevalece sobre display:flex/grid, preservando o fluxo de um card por vez. */
-[hidden]{display:none!important}
+[hidden] {
+  display: none !important;
+}
 /* Ajustes gerais para celulares. */
-@media(max-width:600px){main{margin:24px auto}.card{padding:18px}}
+@media (max-width: 600px) {
+  main {
+    margin: 24px auto;
+  }
+  .card {
+    padding: 18px;
+  }
+}
 /* Três campos de resultado com miniatura, rótulo e valor em destaque. */
-#resultado{background:transparent;padding:0;white-space:normal;display:grid;gap:10px}
-.resultado-campo{display:flex;gap:16px;align-items:center;padding:17px 15px;background:#f0f6f2;border:1px solid #d8e7dd;border-radius:10px}
-.miniatura{display:flex;align-items:center;justify-content:center;flex:0 0 58px;height:58px;background:white;border:1px solid #e1eae4;border-radius:12px;font-size:34px;line-height:1}
-.resultado-dados{min-width:0;flex:1}.resultado-label{display:block;font-size:12px;letter-spacing:1.1px;text-transform:uppercase;font-weight:700;color:#567060}
-#resultado .resultado-valor{display:block;font-size:25px;font-weight:750;line-height:1.2;margin-top:5px;overflow-wrap:anywhere}
-#resultado .campo-especie .resultado-valor{font-size:29px}#resultado .campo-pontuacao .resultado-valor{font-size:35px;color:#126841}
+#resultado {
+  background: transparent;
+  padding: 0;
+  white-space: normal;
+  display: grid;
+  gap: 10px;
+}
+.resultado-campo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 17px 15px;
+  background: #f0f6f2;
+  border: 1px solid #d8e7dd;
+  border-radius: 10px;
+}
+.miniatura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 58px;
+  height: 58px;
+  background: white;
+  border: 1px solid #e1eae4;
+  border-radius: 12px;
+  font-size: 34px;
+  line-height: 1;
+}
+.resultado-dados {
+  min-width: 0;
+  flex: 1;
+}
+.resultado-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #567060;
+}
+#resultado .resultado-valor {
+  display: block;
+  font-size: 25px;
+  font-weight: 750;
+  line-height: 1.2;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+#resultado .campo-especie .resultado-valor {
+  font-size: 29px;
+}
+#resultado .campo-pontuacao .resultado-valor {
+  font-size: 35px;
+  color: #126841;
+}
 /* Barra decorativa: a pontuação acessível também existe como texto no DOM. */
-.pontuacao-barra{height:7px;border-radius:9px;background:#d7e6dc;margin-top:10px;overflow:hidden}.pontuacao-barra span{display:block;height:100%;background:#198754;border-radius:9px}
+.pontuacao-barra {
+  height: 7px;
+  border-radius: 9px;
+  background: #d7e6dc;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.pontuacao-barra span {
+  display: block;
+  height: 100%;
+  background: #198754;
+  border-radius: 9px;
+}
 /* Evita estouro de nomes de raça e mantém ícones proporcionais em telas estreitas. */
-@media(max-width:420px){.resultado-campo{gap:12px;padding:14px 12px}.miniatura{flex-basis:48px;height:48px;font-size:29px}#resultado .resultado-valor{font-size:22px}#resultado .campo-especie .resultado-valor{font-size:26px}}
+@media (max-width: 420px) {
+  .resultado-campo {
+    gap: 12px;
+    padding: 14px 12px;
+  }
+  .miniatura {
+    flex-basis: 48px;
+    height: 48px;
+    font-size: 29px;
+  }
+  #resultado .resultado-valor {
+    font-size: 22px;
+  }
+  #resultado .campo-especie .resultado-valor {
+    font-size: 26px;
+  }
+}
 /* Combos próprios: lista visível, pesquisa digitada e destaque para clique/teclado. */
-.combo{position:relative;margin-bottom:4px}.combo-campo{position:relative}
-.combo-campo input{padding-right:50px}.combo-campo input:focus{outline:2px solid #2b8b5e;outline-offset:1px}
-.combo-seta{position:absolute;right:1px;top:1px;bottom:1px;width:43px;padding:0;margin:0;border-left:1px solid #dae5de;border-radius:0 7px 7px 0;background:#eff5f1;color:#28523e;font-size:25px;font-weight:500;line-height:1}
-.combo-seta:hover{background:#e0ede5}
-.combo-lista{position:absolute;z-index:50;top:calc(100% + 6px);left:0;right:0;margin:0;padding:6px;list-style:none;background:#fff;border:1px solid #b7cfc0;border-radius:10px;box-shadow:0 12px 28px #163b3024;max-height:230px;overflow-y:auto;overscroll-behavior:contain}
-.combo-lista.acima{top:auto;bottom:calc(100% + 6px)}
-.combo-lista [role=option]{padding:11px 12px;border-radius:6px;cursor:pointer;color:#234b38;overflow-wrap:anywhere}
-.combo-lista [role=option]:hover,.combo-lista [aria-selected=true]{background:#e0f0e6;color:#115a36}
-.combo-lista .combo-adicionar{font-weight:650;color:#126841;border-top:1px solid #e0eae4;margin-top:4px;padding-top:14px}
-.combo-vazio{padding:12px;color:#6d7d73;font-size:14px}
+.combo {
+  position: relative;
+  margin-bottom: 4px;
+}
+.combo-campo {
+  position: relative;
+}
+.combo-campo input {
+  padding-right: 50px;
+}
+.combo-campo input:focus {
+  outline: 2px solid #2b8b5e;
+  outline-offset: 1px;
+}
+.combo-seta {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  width: 43px;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid #dae5de;
+  border-radius: 0 7px 7px 0;
+  background: #eff5f1;
+  color: #28523e;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1;
+}
+.combo-seta:hover {
+  background: #e0ede5;
+}
+.combo-lista {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #b7cfc0;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px #163b3024;
+  max-height: 230px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.combo-lista.acima {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+.combo-lista [role="option"] {
+  padding: 11px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #234b38;
+  overflow-wrap: anywhere;
+}
+.combo-lista [role="option"]:hover,
+.combo-lista [aria-selected="true"] {
+  background: #e0f0e6;
+  color: #115a36;
+}
+.combo-lista .combo-adicionar {
+  font-weight: 650;
+  color: #126841;
+  border-top: 1px solid #e0eae4;
+  margin-top: 4px;
+  padding-top: 14px;
+}
+.combo-vazio {
+  padding: 12px;
+  color: #6d7d73;
+  font-size: 14px;
+}
 /* Carregamento real por etapas, sem inventar porcentagem de download. A animação é indeterminada. */
-.carregamento{display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:center;margin:24px 0;padding:24px 20px;background:#fff;border:1px solid #d4e4da;border-radius:14px;box-shadow:0 8px 28px #214c3810}
-.carregamento-icone{position:relative;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#f0f7f2;font-size:26px}
-.carregamento-icone:before{content:'';position:absolute;inset:0;border:3px solid #e0eee5;border-top-color:#18764e;border-right-color:#60a981;border-radius:50%;animation:carregamento-girar 1.1s linear infinite}
-.carregamento-conteudo strong{display:block;font-size:18px;line-height:1.3;color:#1e4a34}.carregamento-conteudo p{font-size:14px;line-height:1.5;color:#66816e;margin:6px 0 0}
-.carregamento-trilha{grid-column:1/-1;height:5px;margin-top:4px;border-radius:9px;background:#e9f2ec;overflow:hidden}
-.carregamento-trilha span{display:block;width:42%;height:100%;border-radius:9px;background:linear-gradient(90deg,#b5dbc4,#218250);animation:carregamento-deslizar 1.6s ease-in-out infinite}
-@keyframes carregamento-girar{to{transform:rotate(360deg)}}
-@keyframes carregamento-deslizar{0%{transform:translateX(-110%)}100%{transform:translateX(350%)}}
-@media(prefers-reduced-motion:reduce){.carregamento-icone:before,.carregamento-trilha span{animation:none}.carregamento-trilha span{width:50%}}
-@media(max-width:400px){.carregamento{padding:20px 16px;grid-template-columns:52px 1fr;gap:12px}.carregamento-icone{width:50px;height:50px}.carregamento-conteudo strong{font-size:17px}}
+.carregamento {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin: 24px 0;
+  padding: 24px 20px;
+  background: #fff;
+  border: 1px solid #d4e4da;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px #214c3810;
+}
+.carregamento-icone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f0f7f2;
+  font-size: 26px;
+}
+.carregamento-icone:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 3px solid #e0eee5;
+  border-top-color: #18764e;
+  border-right-color: #60a981;
+  border-radius: 50%;
+  animation: carregamento-girar 1.1s linear infinite;
+}
+.carregamento-conteudo strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #1e4a34;
+}
+.carregamento-conteudo p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #66816e;
+  margin: 6px 0 0;
+}
+.carregamento-trilha {
+  grid-column: 1/-1;
+  height: 5px;
+  margin-top: 4px;
+  border-radius: 9px;
+  background: #e9f2ec;
+  overflow: hidden;
+}
+.carregamento-trilha span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: 9px;
+  background: linear-gradient(90deg, #b5dbc4, #218250);
+  animation: carregamento-deslizar 1.6s ease-in-out infinite;
+}
+@keyframes carregamento-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes carregamento-deslizar {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carregamento-icone:before,
+  .carregamento-trilha span {
+    animation: none;
+  }
+  .carregamento-trilha span {
+    width: 50%;
+  }
+}
+@media (max-width: 400px) {
+  .carregamento {
+    padding: 20px 16px;
+    grid-template-columns: 52px 1fr;
+    gap: 12px;
+  }
+  .carregamento-icone {
+    width: 50px;
+    height: 50px;
+  }
+  .carregamento-conteudo strong {
+    font-size: 17px;
+  }
+}

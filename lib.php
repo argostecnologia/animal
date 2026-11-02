@@ -1,7 +1,23 @@
 <?php
 declare(strict_types=1);
 
-/** Funções compartilhadas por API e migração; não envia respostas HTTP por conta própria. */
+/**
+ * O lib.php reúne funções compartilhadas do servidor, usadas pelo api.php.
+ *
+ * Funções disponíveis:
+ * - animalConfig(): lê a configuração privada da aplicação.
+ * - animalDb(): abre a conexão com o PostgreSQL.
+ * - animalSpeciesAliases(): relaciona variações de nomes às espécies permitidas.
+ * - animalSpecies(): valida e padroniza a espécie.
+ * - animalVector(): valida e normaliza o vetor de características da foto.
+ * - animalText(): valida textos recebidos, como raça e observações.
+ *
+ * Também define a versão do extrator, o pré-processamento e as 1.280 dimensões
+ * esperadas no vetor.
+ *
+ * É necessário durante a execução da API, mas não é carregado pelo navegador.
+ * Não envia respostas HTTP por conta própria.
+ */
 
 // Devem corresponder às constantes de app.js. Vetores de modelos diferentes não são misturados.
 const ANIMAL_EXTRACTOR = 'mobilenet-js-2.1.1-v2-alpha1';

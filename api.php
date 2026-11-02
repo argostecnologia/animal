@@ -1,12 +1,18 @@
 <?php
 // Exige tipos compatíveis nas chamadas feitas por este arquivo, evitando conversões escalares implícitas.
 declare(strict_types=1);
+
 /**
- * API JSON da identificação de animais.
- * Ações públicas utilizadas pela interface: session, taxonomy, predict e save.
- * Não possui login administrativo, galeria nem consulta de fotos por sessão.
- * Senhas do PostgreSQL ficam exclusivamente no arquivo privado carregado por lib.php.
+O api.php é essencial durante a execução do site. Ele recebe as solicitações do app.js e faz a comunicação com o PostgreSQL.
+
+Atualmente, possui quatro operações:
+- session: fornece o token de segurança e informa se a configuração está disponível.
+- taxonomy: consulta espécies e raças dos exemplos cadastrados.
+- predict: compara o vetor da foto com os exemplos salvos para encontrar animais semelhantes.
+- save: grava fotos, vetores, dados e correções.
+Também valida os dados e protege as gravações. Precisa estar no servidor com suporte a PHP. Sem ele, a análise inicial no navegador pode funcionar, mas o aprendizado com exemplos cadastrados fica indisponível.
  */
+
 // Carrega as funções de configuração, conexão PostgreSQL, validação de textos, espécies e vetores.
 require __DIR__ . '/lib.php';
 // Todas as respostas da API são JSON; fotos não são disponibilizadas por uma rota de consulta.
