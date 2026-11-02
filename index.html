@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<!-- Dependências carregadas em ordem: TensorFlow.js, MobileNet e lógica da aplicação. -->
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Animal — Identificar espécie e raça</title>
+<link rel="stylesheet" href="./style.css?v=correcao13">
+<script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+<script defer src="./app.js?v=correcao13"></script>
+</head>
+<body><main>
+<!-- Esta parte fica disponível antes de qualquer card: só a escolha da foto e a câmera. -->
+<h1>Identificar animal</h1>
+<p>Este projeto identifica a espécie e sugere a raça de animais a partir de uma foto. Quando não reconhecer, você pode cadastrar os dados para ajudar nas próximas identificações.</p>
+<!-- Aparece desde o HTML inicial, inclusive enquanto as bibliotecas externas estão baixando. -->
+<div id="carregamento" class="carregamento" role="status" aria-live="polite">
+  <div class="carregamento-icone" aria-hidden="true"><span>🐾</span></div>
+  <div class="carregamento-conteudo"><strong>Preparando a identificação</strong><p id="carregamento-etapa">Carregando os recursos…</p></div>
+  <div class="carregamento-trilha" aria-hidden="true"><span></span></div>
+</div>
+<div id="selecao-foto" hidden>
+<label for="foto">Selecione uma foto</label><input id="foto" type="file" accept="image/*" disabled>
+<button id="camera" class="secondary" disabled>Abrir câmera</button>
+<!-- playsinline evita abrir o vídeo em tela cheia nos celulares. A rolagem mira os controles. -->
+<div id="camera-area" hidden><video id="video" autoplay playsinline muted></video><div id="camera-controles" class="row"><button id="capturar" disabled>Tirar foto</button><button id="fechar-camera" class="secondary">Cancelar</button></div></div>
+</div>
+<!-- O canvas é a foto efetivamente usada na inferência e enviada ao cadastro. -->
+<div id="preview" hidden><canvas id="quadro" width="512" height="512" aria-label="Foto selecionada"></canvas></div>
+<!-- Apenas este card é exibido depois da seleção. O usuário inicia a busca pelo botão. -->
+<section id="identificacao" class="card" hidden aria-labelledby="identificacao-titulo">
+<h2 id="identificacao-titulo">Identificação</h2><button id="identificar" disabled>Identificar</button>
+<output id="resultado" aria-live="polite" hidden></output>
+<button id="corrigir-identificacao" class="secondary" hidden>Corrigir identificação</button>
+<button id="outra-foto" class="secondary">Outra foto</button>
+</section>
+<!-- Se não houver reconhecimento, este card substitui Identificação; nunca aparecem juntos. -->
+<section id="cadastro" class="card" hidden aria-labelledby="cadastro-titulo">
+<h2 id="cadastro-titulo">Cadastrar animal</h2><p id="cadastro-orientacao">Animal não reconhecido. Informe os dados para cadastrar.</p>
+<form id="cadastro-form">
+<!-- Listas próprias garantem opções visíveis no computador e celular; digitação continua disponível. -->
+<label for="especie">Espécie</label>
+<div class="combo">
+  <div class="combo-campo"><input id="especie" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-controls="lista-especies" autocomplete="off" placeholder="Digite para pesquisar" maxlength="100" required><button id="abrir-especies" class="combo-seta" type="button" aria-label="Abrir lista de espécies" aria-controls="lista-especies" tabindex="-1">⌄</button></div>
+  <ul id="lista-especies" class="combo-lista" role="listbox" aria-label="Espécies" hidden></ul>
+</div>
+<label for="raca">Raça</label>
+<div class="combo">
+  <div class="combo-campo"><input id="raca" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-controls="lista-racas" autocomplete="off" placeholder="Digite para pesquisar ou adicionar" maxlength="100"><button id="abrir-racas" class="combo-seta" type="button" aria-label="Abrir lista de raças" aria-controls="lista-racas" tabindex="-1">⌄</button></div>
+  <ul id="lista-racas" class="combo-lista" role="listbox" aria-label="Raças" hidden></ul>
+</div>
+<button id="salvar" disabled>Cadastrar</button><button id="cancelar-cadastro" type="button" class="secondary">Cancelar</button>
+</form></section>
+<!-- Área de mensagens transitórias e erros, oculta quando não há informação a mostrar. -->
+<p id="status" role="status" hidden></p>
+<button id="tentar-novamente" class="secondary" hidden>Tentar novamente</button>
+</main></body></html>

@@ -1,0 +1,526 @@
+{
+  "7": {
+    "especie": "Galinha",
+    "raca": "Não identificada"
+  },
+  "8": {
+    "especie": "Galinha",
+    "raca": "Não identificada"
+  },
+  "97": {
+    "especie": "Pato",
+    "raca": "Não identificada"
+  },
+  "98": {
+    "especie": "Pato",
+    "raca": "Não identificada"
+  },
+  "99": {
+    "especie": "Ganso",
+    "raca": "Não identificada"
+  },
+  "151": {
+    "especie": "Cachorro",
+    "raca": "Chihuahua"
+  },
+  "152": {
+    "especie": "Cachorro",
+    "raca": "Japanese spaniel"
+  },
+  "153": {
+    "especie": "Cachorro",
+    "raca": "Maltese dog"
+  },
+  "154": {
+    "especie": "Cachorro",
+    "raca": "Pekinese"
+  },
+  "155": {
+    "especie": "Cachorro",
+    "raca": "Shih-Tzu"
+  },
+  "156": {
+    "especie": "Cachorro",
+    "raca": "Blenheim spaniel"
+  },
+  "157": {
+    "especie": "Cachorro",
+    "raca": "papillon"
+  },
+  "158": {
+    "especie": "Cachorro",
+    "raca": "toy terrier"
+  },
+  "159": {
+    "especie": "Cachorro",
+    "raca": "Rhodesian ridgeback"
+  },
+  "160": {
+    "especie": "Cachorro",
+    "raca": "Afghan hound"
+  },
+  "161": {
+    "especie": "Cachorro",
+    "raca": "basset"
+  },
+  "162": {
+    "especie": "Cachorro",
+    "raca": "beagle"
+  },
+  "163": {
+    "especie": "Cachorro",
+    "raca": "bloodhound"
+  },
+  "164": {
+    "especie": "Cachorro",
+    "raca": "bluetick"
+  },
+  "165": {
+    "especie": "Cachorro",
+    "raca": "black-and-tan coonhound"
+  },
+  "166": {
+    "especie": "Cachorro",
+    "raca": "Walker hound"
+  },
+  "167": {
+    "especie": "Cachorro",
+    "raca": "English foxhound"
+  },
+  "168": {
+    "especie": "Cachorro",
+    "raca": "redbone"
+  },
+  "169": {
+    "especie": "Cachorro",
+    "raca": "borzoi"
+  },
+  "170": {
+    "especie": "Cachorro",
+    "raca": "Irish wolfhound"
+  },
+  "171": {
+    "especie": "Cachorro",
+    "raca": "Italian greyhound"
+  },
+  "172": {
+    "especie": "Cachorro",
+    "raca": "whippet"
+  },
+  "173": {
+    "especie": "Cachorro",
+    "raca": "Ibizan hound"
+  },
+  "174": {
+    "especie": "Cachorro",
+    "raca": "Norwegian elkhound"
+  },
+  "175": {
+    "especie": "Cachorro",
+    "raca": "otterhound"
+  },
+  "176": {
+    "especie": "Cachorro",
+    "raca": "Saluki"
+  },
+  "177": {
+    "especie": "Cachorro",
+    "raca": "Scottish deerhound"
+  },
+  "178": {
+    "especie": "Cachorro",
+    "raca": "Weimaraner"
+  },
+  "179": {
+    "especie": "Cachorro",
+    "raca": "Staffordshire bullterrier"
+  },
+  "180": {
+    "especie": "Cachorro",
+    "raca": "American Staffordshire terrier"
+  },
+  "181": {
+    "especie": "Cachorro",
+    "raca": "Bedlington terrier"
+  },
+  "182": {
+    "especie": "Cachorro",
+    "raca": "Border terrier"
+  },
+  "183": {
+    "especie": "Cachorro",
+    "raca": "Kerry blue terrier"
+  },
+  "184": {
+    "especie": "Cachorro",
+    "raca": "Irish terrier"
+  },
+  "185": {
+    "especie": "Cachorro",
+    "raca": "Norfolk terrier"
+  },
+  "186": {
+    "especie": "Cachorro",
+    "raca": "Norwich terrier"
+  },
+  "187": {
+    "especie": "Cachorro",
+    "raca": "Yorkshire terrier"
+  },
+  "188": {
+    "especie": "Cachorro",
+    "raca": "wire-haired fox terrier"
+  },
+  "189": {
+    "especie": "Cachorro",
+    "raca": "Lakeland terrier"
+  },
+  "190": {
+    "especie": "Cachorro",
+    "raca": "Sealyham terrier"
+  },
+  "191": {
+    "especie": "Cachorro",
+    "raca": "Airedale"
+  },
+  "192": {
+    "especie": "Cachorro",
+    "raca": "cairn"
+  },
+  "193": {
+    "especie": "Cachorro",
+    "raca": "Australian terrier"
+  },
+  "194": {
+    "especie": "Cachorro",
+    "raca": "Dandie Dinmont"
+  },
+  "195": {
+    "especie": "Cachorro",
+    "raca": "Boston bull"
+  },
+  "196": {
+    "especie": "Cachorro",
+    "raca": "miniature schnauzer"
+  },
+  "197": {
+    "especie": "Cachorro",
+    "raca": "giant schnauzer"
+  },
+  "198": {
+    "especie": "Cachorro",
+    "raca": "standard schnauzer"
+  },
+  "199": {
+    "especie": "Cachorro",
+    "raca": "Scotch terrier"
+  },
+  "200": {
+    "especie": "Cachorro",
+    "raca": "Tibetan terrier"
+  },
+  "201": {
+    "especie": "Cachorro",
+    "raca": "silky terrier"
+  },
+  "202": {
+    "especie": "Cachorro",
+    "raca": "soft-coated wheaten terrier"
+  },
+  "203": {
+    "especie": "Cachorro",
+    "raca": "West Highland white terrier"
+  },
+  "204": {
+    "especie": "Cachorro",
+    "raca": "Lhasa"
+  },
+  "205": {
+    "especie": "Cachorro",
+    "raca": "flat-coated retriever"
+  },
+  "206": {
+    "especie": "Cachorro",
+    "raca": "curly-coated retriever"
+  },
+  "207": {
+    "especie": "Cachorro",
+    "raca": "golden retriever"
+  },
+  "208": {
+    "especie": "Cachorro",
+    "raca": "Labrador retriever"
+  },
+  "209": {
+    "especie": "Cachorro",
+    "raca": "Chesapeake Bay retriever"
+  },
+  "210": {
+    "especie": "Cachorro",
+    "raca": "German short-haired pointer"
+  },
+  "211": {
+    "especie": "Cachorro",
+    "raca": "vizsla"
+  },
+  "212": {
+    "especie": "Cachorro",
+    "raca": "English setter"
+  },
+  "213": {
+    "especie": "Cachorro",
+    "raca": "Irish setter"
+  },
+  "214": {
+    "especie": "Cachorro",
+    "raca": "Gordon setter"
+  },
+  "215": {
+    "especie": "Cachorro",
+    "raca": "Brittany spaniel"
+  },
+  "216": {
+    "especie": "Cachorro",
+    "raca": "clumber"
+  },
+  "217": {
+    "especie": "Cachorro",
+    "raca": "English springer"
+  },
+  "218": {
+    "especie": "Cachorro",
+    "raca": "Welsh springer spaniel"
+  },
+  "219": {
+    "especie": "Cachorro",
+    "raca": "cocker spaniel"
+  },
+  "220": {
+    "especie": "Cachorro",
+    "raca": "Sussex spaniel"
+  },
+  "221": {
+    "especie": "Cachorro",
+    "raca": "Irish water spaniel"
+  },
+  "222": {
+    "especie": "Cachorro",
+    "raca": "kuvasz"
+  },
+  "223": {
+    "especie": "Cachorro",
+    "raca": "schipperke"
+  },
+  "224": {
+    "especie": "Cachorro",
+    "raca": "groenendael"
+  },
+  "225": {
+    "especie": "Cachorro",
+    "raca": "malinois"
+  },
+  "226": {
+    "especie": "Cachorro",
+    "raca": "briard"
+  },
+  "227": {
+    "especie": "Cachorro",
+    "raca": "kelpie"
+  },
+  "228": {
+    "especie": "Cachorro",
+    "raca": "komondor"
+  },
+  "229": {
+    "especie": "Cachorro",
+    "raca": "Old English sheepdog"
+  },
+  "230": {
+    "especie": "Cachorro",
+    "raca": "Shetland sheepdog"
+  },
+  "231": {
+    "especie": "Cachorro",
+    "raca": "collie"
+  },
+  "232": {
+    "especie": "Cachorro",
+    "raca": "Border collie"
+  },
+  "233": {
+    "especie": "Cachorro",
+    "raca": "Bouvier des Flandres"
+  },
+  "234": {
+    "especie": "Cachorro",
+    "raca": "Rottweiler"
+  },
+  "235": {
+    "especie": "Cachorro",
+    "raca": "German shepherd"
+  },
+  "236": {
+    "especie": "Cachorro",
+    "raca": "Doberman"
+  },
+  "237": {
+    "especie": "Cachorro",
+    "raca": "miniature pinscher"
+  },
+  "238": {
+    "especie": "Cachorro",
+    "raca": "Greater Swiss Mountain dog"
+  },
+  "239": {
+    "especie": "Cachorro",
+    "raca": "Bernese mountain dog"
+  },
+  "240": {
+    "especie": "Cachorro",
+    "raca": "Appenzeller"
+  },
+  "241": {
+    "especie": "Cachorro",
+    "raca": "EntleBucher"
+  },
+  "242": {
+    "especie": "Cachorro",
+    "raca": "boxer"
+  },
+  "243": {
+    "especie": "Cachorro",
+    "raca": "bull mastiff"
+  },
+  "244": {
+    "especie": "Cachorro",
+    "raca": "Tibetan mastiff"
+  },
+  "245": {
+    "especie": "Cachorro",
+    "raca": "French bulldog"
+  },
+  "246": {
+    "especie": "Cachorro",
+    "raca": "Great Dane"
+  },
+  "247": {
+    "especie": "Cachorro",
+    "raca": "Saint Bernard"
+  },
+  "248": {
+    "especie": "Cachorro",
+    "raca": "Eskimo dog"
+  },
+  "249": {
+    "especie": "Cachorro",
+    "raca": "malamute"
+  },
+  "250": {
+    "especie": "Cachorro",
+    "raca": "Siberian husky"
+  },
+  "251": {
+    "especie": "Cachorro",
+    "raca": "dalmatian"
+  },
+  "252": {
+    "especie": "Cachorro",
+    "raca": "affenpinscher"
+  },
+  "253": {
+    "especie": "Cachorro",
+    "raca": "basenji"
+  },
+  "254": {
+    "especie": "Cachorro",
+    "raca": "pug"
+  },
+  "255": {
+    "especie": "Cachorro",
+    "raca": "Leonberg"
+  },
+  "256": {
+    "especie": "Cachorro",
+    "raca": "Newfoundland"
+  },
+  "257": {
+    "especie": "Cachorro",
+    "raca": "Great Pyrenees"
+  },
+  "258": {
+    "especie": "Cachorro",
+    "raca": "Samoyed"
+  },
+  "259": {
+    "especie": "Cachorro",
+    "raca": "Pomeranian"
+  },
+  "260": {
+    "especie": "Cachorro",
+    "raca": "chow"
+  },
+  "261": {
+    "especie": "Cachorro",
+    "raca": "keeshond"
+  },
+  "262": {
+    "especie": "Cachorro",
+    "raca": "Brabancon griffon"
+  },
+  "263": {
+    "especie": "Cachorro",
+    "raca": "Pembroke"
+  },
+  "264": {
+    "especie": "Cachorro",
+    "raca": "Cardigan"
+  },
+  "265": {
+    "especie": "Cachorro",
+    "raca": "toy poodle"
+  },
+  "266": {
+    "especie": "Cachorro",
+    "raca": "miniature poodle"
+  },
+  "267": {
+    "especie": "Cachorro",
+    "raca": "standard poodle"
+  },
+  "268": {
+    "especie": "Cachorro",
+    "raca": "Mexican hairless"
+  },
+  "281": {
+    "especie": "Gato",
+    "raca": "Não identificada"
+  },
+  "282": {
+    "especie": "Gato",
+    "raca": "Não identificada"
+  },
+  "283": {
+    "especie": "Gato",
+    "raca": "Persa"
+  },
+  "284": {
+    "especie": "Gato",
+    "raca": "Siamês"
+  },
+  "285": {
+    "especie": "Gato",
+    "raca": "Mau egípcio (sugestão visual)"
+  },
+  "339": {
+    "especie": "Cavalo",
+    "raca": "Não identificada"
+  },
+  "345": {
+    "especie": "Bovino",
+    "raca": "Não identificada"
+  },
+  "348": {
+    "especie": "Ovelha",
+    "raca": "Não identificada"
+  }
+}
