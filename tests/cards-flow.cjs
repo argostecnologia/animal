@@ -122,16 +122,15 @@ module.exports = async ({browser,base,run,pgBin,pgPort,temp}) => {
   // Outro visitante pode usar os rótulos públicos, mas não ver ou alterar o acervo anterior.
   const taxonomia = await (await outraSessao.request.get(base+'api.php?action=taxonomy')).json();
   assert.ok(taxonomia.labels.some(l=>l.especie==='Bovino'&&l.raca==='Nelore de teste'));
-  const lista = await (await outraSessao.request.get(base+'api.php?action=samples')).json();
-  assert.deepEqual(lista.samples,[]);
-  assert.equal((await outraSessao.request.get(base+'api.php?action=image&id=1')).status(),403);
+  assert.equal((await outraSessao.request.get(base+'api.php?action=samples')).status(),404);
+  assert.equal((await outraSessao.request.get(base+'api.php?action=image&id=1')).status(),404);
   const sessao = await (await outraSessao.request.get(base+'api.php?action=session')).json();
   const headers = {'X-CSRF-Token':sessao.csrf};
   const payload = {...dados,extractor:'mobilenet-js-2.1.1-v2-alpha1',preprocess:'letterbox-512-rgb-v1',especie:'Bovino',raca:'Nelore de teste',confirmed:true};
   // Confirma duplicidade sem deixar um registro AUTO órfão e bloqueia outras espécies na API.
   assert.equal((await outraSessao.request.post(base+'api.php?action=save',{headers,data:payload})).status(),409);
   assert.equal((await outraSessao.request.post(base+'api.php?action=save',{headers,data:{...payload,especie:'Capivara'}})).status(),422);
-  assert.equal((await outraSessao.request.post(base+'api.php?action=deactivate',{headers,data:{sample_id:1}})).status(),403);
+  assert.equal((await outraSessao.request.post(base+'api.php?action=deactivate',{headers,data:{sample_id:1}})).status(),404);
   const psql = sql => run(path.join(pgBin,'psql.exe'),['-h','127.0.0.1','-p',String(pgPort),'-U','animais_test','-d','postgres','-At','-c',sql]);
   // Verifica a gravação real: uma única referência, dimensão correta e confirmação persistida.
   assert.match(psql('SELECT (SELECT count(*) FROM animal_ia.animais), cardinality(embedding), confirmado FROM animal_ia.amostras'),/1\|1280\|t/);

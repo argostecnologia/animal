@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const net = require('node:net');
-const crypto = require('node:crypto');
 const { spawn, execFileSync } = require('node:child_process');
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
@@ -30,14 +29,12 @@ async function ready(url) {
   // Diretório novo por execução: dados e logs nunca apontam para o banco de produção.
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'animais-integration-'));
   const pgdata = path.join(temp, 'pgdata'), pgPort = await port(), httpPort = await port();
-  const password = crypto.randomBytes(18).toString('hex');
   let pgStarted = false, server, browser;
   try {
     // Cria um cluster restrito a 127.0.0.1 e aplica a migração de forma repetível.
     run(path.join(pgBin, 'initdb.exe'), ['-D', pgdata, '-U', 'animais_test', '-A', 'trust', '--no-locale', '-E', 'UTF8']);
     run(path.join(pgBin, 'pg_ctl.exe'), ['-D', pgdata, '-l', path.join(temp, 'postgres.log'), '-o', `-p ${pgPort} -h 127.0.0.1`, '-w', 'start'], { stdio: 'ignore', timeout: 60000 });
     pgStarted = true;
-    const hash = run(php, [...phpArgs, '-r', "echo password_hash(trim(stream_get_contents(STDIN)), PASSWORD_DEFAULT);"], { input: password }).trim();
     const config = path.join(temp, 'config.php');
     const configSemSenha = `<?php return ['dsn'=>'pgsql:host=127.0.0.1;port=${pgPort};dbname=postgres','user'=>'animais_test','password'=>''];`;
     fs.writeFileSync(config, configSemSenha);
@@ -49,9 +46,8 @@ async function ready(url) {
     // O roteador local simula /animal para que as mesmas URLs relativas sejam usadas na VPS.
     server = spawn(php, [...phpArgs, '-S', `127.0.0.1:${httpPort}`, 'tools/dev-router.php'], { cwd: root, env, windowsHide: true, stdio: ['ignore', log, log] });
     const base = `http://127.0.0.1:${httpPort}/animal/`; await ready(base);
-    // Cadastro e identificação são públicos; alterações e acervo anterior continuam protegidos.
-    const anonymous = await fetch(base + 'api.php?action=samples'); assert.equal(anonymous.status, 200);
-    assert.deepEqual((await anonymous.json()).samples, []);
+    // Cadastro e identificação são públicos; rotas antigas de administração e histórico não existem.
+    const anonymous = await fetch(base + 'api.php?action=samples'); assert.equal(anonymous.status, 404);
     const session = await fetch(base + 'api.php?action=session');
     const cookie = session.headers.get('set-cookie').split(';')[0];
     const csrf = (await session.json()).csrf;
